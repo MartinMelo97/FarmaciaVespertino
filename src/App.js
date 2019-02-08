@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Info from './components/Info'
 import Home from './components/Home'
 import Products from './components/Products'
+import Contact from './components/Contact'
 
 class App extends Component {
   render() {
@@ -19,6 +19,7 @@ class App extends Component {
           <Info />
           <Home />
           <Products />
+          <Contact />
         </div>
       </div>
     );
