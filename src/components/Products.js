@@ -31,10 +31,44 @@ class Products extends Component {
                 precio: "$40.00",
                 imagen: "https://www.superama.com.mx/Content/images/products/img_large/0750164475129L.jpg"
             },
-        ]
+        ],
+        newProducto: {
+            nombre: null,
+            precio: null,
+            imagen: null,
+            caducidad: null,
+            sustancia: null,
+            contenido: null
+        }
         }
     }
 
+    changeName = (e) => {
+        let new_producto = this.state.newProducto
+        new_producto.nombre = e.target.value
+        this.setState({newProducto: new_producto})
+    }
+
+    changePrecio = (e) => {
+        let n = this.state.newProducto
+        n.precio = e.target.value
+        this.setState({newProducto: n})
+    }
+
+    changeImagen = (e) => {
+        let nuevo = this.state.newProducto
+        nuevo.imagen = e.target.value
+        this.setState({newProducto: nuevo})
+    }
+
+    addProduct = (e) => {
+        e.preventDefault();
+        //let productos = this.state.productos
+        let { productos } = this.state
+        let new_producto = this.state.newProducto
+        productos.push(new_producto)
+        this.setState({productos})
+    }
     render() {
         return (
             <div>
@@ -48,10 +82,36 @@ class Products extends Component {
                     
                     <p>--------------------------------------------</p>
 
-                    <Product p={producto} />
+                   <Product p={producto} />
                     </div>
                 ))
             }
+            <div className="new-product-container">
+                <h3>Agregar nuevo producto</h3>
+                <label for="nombre">Nombre: </label>
+                <input 
+                    type="text" 
+                    name="nombre" 
+                    id="nombre" 
+                    onChange={(e)=>this.changeName(e)}
+                    />
+
+                <label for="precio">Precio: </label>
+                <input 
+                    type="number" 
+                    name="precio" 
+                    id="precio"
+                    onChange={(e)=>this.changePrecio(e)} />
+
+                <label for="imagen">URL de imagen: </label>
+                <input 
+                    type="text"
+                    name="imagen"
+                    id="imagen"
+                    onChange={(e)=>this.changeImagen(e)} />
+
+                <button onClick={(e)=>this.addProduct(e)}>Agregar producto</button>
+            </div>
             </div>
         )
     }
